@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .main{
+            display : flex;
+        }
+        .tabs{
+            display : flex;
+            flex-direction: column;
+            justify-content:space-between ;
+
+        }
+        .tab{
+            height : 120px;
+            width : 50px;
+            background-color:aqua;
+            border : solid 1px black;
+        }
+        .items{
+            width : 300px;
+            display : none;
+            padding : 10px;
+            background-color: #fff;
+            position: relative;
+        }
+/*         .items::before{
+            content : "";
+            position : absolute;
+            top: 0;
+            left : 0;
+            width : 50px;
+            height: 5px;
+            background-color: red;
+
+        }
+        .items:nth-child(2)::before{
+            left: 90px;
+        }
+        .items:nth-child(3)::before{
+            left: 180px;
+        } */
+        .items.active{
+            display : inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="tabs">
+            <div class="tab" data-tab-target="#tab1">
+                <p>tab1</p>
+            </div>
+            <div class="tab" data-tab-target="#tab2">
+                <p>tab2</p>
+            </div>
+            <div class="tab" data-tab-target="#tab3">
+                <p>tab3</p>
+            </div>
+        </div>
+        <div class="content">
+            <div id="tab1" data-tab-content class="items active">
+                <h2>탭1 입니다</h2>
+                <p>this is tab 1</p>
+            </div>
+            <div id="tab2" data-tab-content class="items ">
+                <h2>탭2 입니다</h2>
+                <p>this is tab 2</p>
+            </div>
+            <div id="tab3" data-tab-content class="items ">
+                <h2>탭3 입니다</h2>
+                <p>this is tab 3</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+<script>
+    const tabs = document.querySelectorAll("[data-tab-target]");
+    const tabcon = document.querySelectorAll("[data-tab-content]");
+
+    tabs.forEach(
+        (tab)=>{
+            // 1. tab들 불러와서 click 이벤트 추가후 클릭한 타켓(컨테츠 있는 부분) 변수로 저장
+            // 2. 클릭한 탭의 타켓만 보여주고 나머지 다 안보여주기
+            tab.addEventListener("click", () => {
+                // 클린한 탭의 타겟 저장
+                const target = document.querySelector(tab.dataset.tabTarget);
+                console.log(tab.dataset.tabTarget);
+                // 모든 탭의 타겟들(컨테츠부분) active 없애기
+                tabcon.forEach((con) => {
+                    con.classList.remove("active");
+                });
+                target.classList.add("active");
+            }) 
+        }
+    )
+</script>
+</html>

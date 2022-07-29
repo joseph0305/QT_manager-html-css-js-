@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud and Tab</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .main{
+        display: flex;
+        height: 100vh;
+    }
+    .tabs{
+        background-color: antiquewhite;
+        width: 80px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .tab{
+        background-color: aqua;
+        width: 50px;
+        height: 50px;
+        border-radius: 10px;
+        text-align: center;
+        line-height: 50px;
+    }
+    .items{
+        width: 300px;
+        padding: 10px;
+        display:none;
+        position : relative;
+    }
+    .items.is-active{
+        display:inline-block
+    }
+</style>
+<body>
+    <div class="main">
+        <div class="tabs">
+            <div class="tab is-active" >
+                <p>tab1</p>
+            </div>
+            <div class="tab" >
+                <p>tab2</p>
+            </div>
+            <div class="tab" >
+                <p>tab3</p>
+            </div>
+            <div class="tab" >
+                <p>tab3</p>
+            </div>
+        </div>
+        <div class="content">
+            <div id="tab1" class="items is-active">
+                <h1>Writing page</h1>
+                <h3>Read & Create</h3>
+                <p> Read : 성경 말씀 read</p>
+                <p> Create :내 글 작성 </p>
+            </div>
+            <div id="tab2"  class="items">
+                <h1>Others progress</h1>
+                <h3>Read</h3>
+            </div>
+            <div id="tab3"  class="items">
+                <h1>Rooms</h1>
+                <h3>after finish firebase</h3>
+            </div>
+            <div id="tab4"  class="items">
+                <h1>My QT page</h1>
+                <h3>Read & Update & delete</h3>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let tabs = document.querySelectorAll(".tab");
+    let content = document.querySelectorAll(".items");
+
+    tabs.forEach( (tab, index) => {
+        tab.addEventListener("click", () => {
+            content.forEach((con) =>{
+                con.classList.remove("is-active");
+            });
+            tabs.forEach( (tab) => {
+                tab.classList.remove("is-active");
+            });
+
+            content[index].classList.add("is-active");
+            tabs[index].classList.add("is-active");
+        })
+    }
+    );
+</script>
+</html>

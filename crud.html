@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h1{
+            text-align: center;
+        }
+        .hi{
+            width : 700px;
+            height : 100px;
+            background-color: aqua;
+            margin : 0 auto;
+            display:flex;
+            justify-content:space-around;
+        }
+        #whole{
+            display : flex;
+            flex-direction: column;
+        }
+        #Create_btn{
+            width: 200px;
+            height : 70px;
+            margin : 0 auto;
+            
+        }
+        .Update_btn{
+            width : 70px;
+            height : 40px;
+            margin : auto 0;
+            margin-left: 60px;
+        }
+        .Delete_btn{
+            width : 70px;
+            height : 40px;
+            margin : auto 0;
+            margin-right: 30px;
+        }
+        .content{
+            width : 400px;
+            height : 80px;
+            margin : auto 0;
+            margin-left: 20px;
+            background-color: azure;
+        }
+        .num{
+            text-align: center;
+            margin-top: 27px;
+        }
+        input{
+            width: 300px;
+            margin : 0 auto;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="whole">
+        <h1>Read element</h1>
+        <div id="container">
+<!--         <div class="hi">
+            <div class="content">
+                <div class="num">
+                    3
+                </div>
+            </div>
+            <button class="Update_btn">
+                Update
+            </button>
+            <button class="Delete_btn">
+                Delete
+            </button>
+        </div> -->
+        </div>
+        <div class="bottom">
+        <form id="Create_form">
+        <input id="C_input" type="text"/>
+        <button id="Create_btn">Create the element</button>
+        </form>
+        </div>
+    </div>
+    <div id="Show">
+
+    </div>
+</body>
+<script>
+    // 로컬 스토리지 저장
+    //localStorage.setItem("test1",JSON.stringify("content"));
+    // 로컬 스토리지 불러오기
+    //let Data = JSON.parse(localStorage.getItem("test1"));
+   
+    const Form = document.querySelector("#Create_form");
+    const Input = document.querySelector("#C_input");
+    let array = []
+
+    function SaveArray(){
+        localStorage.setItem("CRUD",JSON.stringify(array));
+    }
+    // || Create || 
+    function StopSubmit(event){
+        event.preventDefault();
+        console.log(event);
+        // 저장할 데이터 형식 구조화
+        const Content = {
+            content : Input.value,
+            id : Date.now(),
+        }
+        Input.value = "";
+        // array에 push
+        array.push(Content);
+        // 로컬 스토리지 저장
+        SaveArray();
+        // makehtml
+        createHtml(array);
+    }
+
+    Form.addEventListener("submit",StopSubmit)
+
+    // Read
+
+    //let savedData = JSON.parse(localStorage.getItem("CRUD"));
+    const savedData = localStorage.getItem("CRUD");
+    if(savedData !== null){
+        const Data = JSON.parse(savedData);
+        array = Data;
+        createHtml(array);
+    }
+
+    //html 만들기
+    function formHTML(item){
+        return `
+        <div id="${item.id}" class="hi">
+            <div class="content">
+                <div class="num">
+                    ${item.content}
+                </div>
+            </div>
+            <button class="Update_btn">
+                Update
+            </button>
+            <button class="Delete_btn">
+                Delete
+            </button>
+        </div>
+        `;
+    } 
+    
+    function createHtml(data){
+        const container = document.querySelector("#container");
+
+        container.innerHTML = data.map((item)=>formHTML(item)).join('')
+        
+        // delete 기능
+        let button = document.querySelectorAll('.Delete_btn');  
+        button.forEach(function(item) {
+            item.addEventListener("click",deleteToDo ); 
+        });
+    }
+
+    function deleteToDo(event){
+        let chosen = event.target.parentElement;
+        console.log("delete event", event);
+        console.log(chosen.id)
+        array = array.filter((item)=>item.id !== parseInt(chosen.id)); // true 면 넣고 , flase면 안넣고
+        chosen.remove(); // .remove() : html 지우는 js 명령어
+        SaveArray();
+
+        //li2.remove();
+        //saveToDos();
+    }
+
+// 
+</script>
+</html>
+
