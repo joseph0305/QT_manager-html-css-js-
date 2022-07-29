@@ -5,17 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud and Tab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 </head>
 <style>
     *{
         margin: 0;
         padding: 0;
     }
+    button{
+        width: 60px;
+        height: 30px;
+    }
     .main{
         display: flex;
         height: 100vh;
+        width: 100vw;
     }
-    .tabs{
+    #tabs{
         background-color: antiquewhite;
         width: 80px;
         height: 100%;
@@ -33,7 +40,7 @@
         line-height: 50px;
     }
     .items{
-        width: 300px;
+        width: 100pw;
         padding: 10px;
         display:none;
         position : relative;
@@ -41,10 +48,43 @@
     .items.is-active{
         display:inline-block
     }
+    .swiper {
+        width: 85vw;
+        height: 85vh;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #fff;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
 </style>
 <body>
     <div class="main">
-        <div class="tabs">
+        
+        <div  id="tabs" class="user-view">
             <div class="tab is-active" >
                 <p>tab1</p>
             </div>
@@ -58,12 +98,23 @@
                 <p>tab3</p>
             </div>
         </div>
+        
         <div class="content">
             <div id="tab1" class="items is-active">
                 <h1>Writing page</h1>
                 <h3>Read & Create</h3>
-                <p> Read : 성경 말씀 read</p>
-                <p> Create :내 글 작성 </p>
+                <button id="init_side">전송하기</button>
+                
+                   <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                    <div class="swiper-slide"><div id="editor"></div></div>
+                    <div class="swiper-slide">Slide 2</div>
+                    <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <div class="swiper-button-next"></div>`
+                    <div class="swiper-button-prev"></div>
+                </div>
             </div>
             <div id="tab2"  class="items">
                 <h1>Others progress</h1>
@@ -81,7 +132,41 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> -->
 <script>
+    
+    
+    var swiper = new Swiper(".mySwiper", {
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+      });
+
+    const Editor = toastui.Editor;
+
+    // toast UI 에디터 : markdown 시작
+/*     const editor = new Editor({
+        el: document.querySelector('#editor'),
+        height: '500px',
+        initialEditType: 'markdown',
+        previewStyle: 'vertical'
+    }); */
+    // toast UI 에디터 : 평범 에디터 시작
+    const editor = new toastui.Editor({
+        el: document.querySelector('#editor'),
+        height: '90%',
+        //initialValue: content,
+        initialEditType: 'wysiwyg'
+      });
+
+   
+    let btn = document.querySelector("#init_side");
+    btn.addEventListener("click", ()=>{const a = editor.getMarkdown(); console.log("a",a);})
+    
+    // tab js
     let tabs = document.querySelectorAll(".tab");
     let content = document.querySelectorAll(".items");
 
