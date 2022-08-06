@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud and Tab</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <div class="main">
+        
+        <div  id="tabs" class="blue z-depth-2" >
+            <div class="tab grey lighten-4 is-active" >
+                <p><i class="material-icons" >border_color</i></p>
+            </div>
+            <div class="tab grey lighten-4" >
+                <p><i class="material-icons" >people_outline</i></p>
+            </div>
+            <div class="tab grey lighten-4" >
+                <p><i class="material-icons">person_add</i></p>
+            </div>
+            <div class="tab grey lighten-4" >
+                <p><i class="material-icons">import_contacts</i></p>
+            </div>
+        </div>
+        
+        <div class="content">
+            
+            <div id="tab1" class="items is-active">
+                <h3 class="tab-title">Writing page</h3>
+                <button id="init_side" class="waves-effect waves-light btn blue darken-1">전송하기</button>
+                
+                   <!-- Swiper -->
+                <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                    <div id="slide1" class="swiper-slide">Slide 1</div>
+                    <div class="swiper-slide"><div id="editor"></div></div>
+                    <div class="swiper-slide">Slide 3</div>
+                    </div>
+                    <div class="swiper-button-next"></div>`
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            <div id="tab2"  class="items">
+                <h3 class="tab-title">Others progress</h3>
+                <ul class="collection">
+                    <li class="collection-item avatar">
+                      <img src="images/yuna.jpg" alt="" class="circle">
+                      <span class="title">신경식</span>
+                      <p>제목 : 배드로의 회개<br>
+                         3분 전 올림
+                      </p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+                    </li>
+
+                    <!-- dropdown -->
+                    <ul id="dropdown2" class="dropdown-content">
+                        <li><a href="#!">one</a></li>
+                        <li><a href="#!">two<span class="new badge">1</span></a></li>
+                        <li><a href="#!">three</a></li>
+                      </ul>
+
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle">folder</i>
+                      <span class="title">Title</span>
+                      <p>First Line <br>
+                         Second Line
+                      </p>
+                      <a class="dropdown-trigger secondary-content " href="#!" data-target="dropdown2"><i style="color:blue" class="material-icons right ">more_vert</i></a>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle green">insert_chart</i>
+                      <span class="title">Title</span>
+                      <p>First Line <br>
+                         Second Line
+                      </p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+                    </li>
+                    <li class="collection-item avatar">
+                      <i class="material-icons circle red">play_arrow</i>
+                      <span class="title">Title</span>
+                      <p>First Line <br>
+                         Second Line
+                      </p>
+                      <a href="#!" class="secondary-content"><i class="material-icons">more_vert</i></a>
+                    </li>
+                  </ul>
+            </div>
+            <div id="tab3"  class="items">
+                <h1>Rooms</h1>
+                <h3>after finish firebase</h3>
+            </div>
+            <div id="tab4"  class="items">
+                <h1>My QT page</h1>
+                <h3>Read & Update & delete</h3>
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./main.js"></script>
+</html>

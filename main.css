@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main{
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+.content{
+    margin-left: 90px;
+    padding-left: 10px;
+}
+#tabs{
+    background-color: antiquewhite;
+    width: 80px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    position:fixed;
+}
+.tab{
+    background-color: aqua;
+    width: 60px;
+    height: 60px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 70px;
+    font-size : 1rem;
+}
+.items{
+    width: 100pw;
+    padding: 10px;
+    display:none;
+    position : relative;
+}
+.items.is-active{
+    display:inline-block;
+}
+.swiper {
+    width: 85vw;
+    height: 85vh;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tab-title{
+    text-align: center;
+  }
+  .collection>li{
+    width: 80vw;
+  }
