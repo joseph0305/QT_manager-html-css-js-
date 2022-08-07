@@ -76,3 +76,10 @@
   .collection>li{
     width: 80vw;
   }
+
+  /* 슬라이드 1 */
+  .Bible_content{
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+  }

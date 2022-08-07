@@ -20,7 +20,7 @@ function ShowBibleWords(){
 
 // 성경구절 보여주기
 function ShowWords_slide1(data){
-    const Slide1 = document.querySelector("#slide1");
+    const Slide1 = document.querySelector(".Bible_content");
     
     let a = data.map((item)=>formHTML(item)).join('')
     console.log(a);
